@@ -1,0 +1,44 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0d0d10;
+  --surface: #13131a;
+  --raised: #1c1c26;
+  --hover: #242430;
+  --line: #2c2c3a;
+  --line-bright: #3d3d52;
+
+  --purple: #6e5ff0;
+  --purple-faint: rgba(110, 95, 240, 0.12);
+  --purple-soft: #9b8ffa;
+
+  --green: #34d375;
+  --green-faint: rgba(52, 211, 117, 0.1);
+
+  --red: #f06060;
+
+  --text: #dddde8;
+  --text-dim: #7c7c9a;
+  --text-ghost: #44445a;
+
+  --r: 8px;
+  --font: 'IBM Plex Sans', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
+
+html, body, #root { height: 100%; overflow: hidden; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 99px; }
+
+@keyframes up { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+@keyframes bounce { 0%,100% { transform: translateY(0); } 40% { transform: translateY(-4px); } }
