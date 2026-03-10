@@ -157,9 +157,3 @@ And add the MySQL connector to `pom.xml`:
     <scope>runtime</scope>
 </dependency>
 ```
-
----
-
-## License
-
-MIT
