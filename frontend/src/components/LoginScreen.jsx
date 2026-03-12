@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 export default function LoginScreen({ onLogin }) {
-  const [mode, setMode] = useState('login') // 'login' | 'register'
+  const [mode, setMode] = useState('login') 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -32,7 +32,7 @@ export default function LoginScreen({ onLogin }) {
       return
     }
 
-    // Login via Spring Security form login
+    
     const params = new URLSearchParams({ username: username.trim(), password })
     const res = await fetch('/api/auth/login', {
       method: 'POST',
