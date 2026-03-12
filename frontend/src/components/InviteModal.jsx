@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 export default function InviteModal({ room, onlineUsers, currentUser, onClose }) {
   const [query, setQuery] = useState('')
-  const [status, setStatus] = useState({}) // username -> 'sending' | 'ok' | 'err:msg'
+  const [status, setStatus] = useState({}) 
 
   const candidates = onlineUsers.filter(u =>
     u !== currentUser && u.toLowerCase().includes(query.toLowerCase())
