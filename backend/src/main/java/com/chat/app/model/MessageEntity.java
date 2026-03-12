@@ -25,10 +25,10 @@ public class MessageEntity {
     @Column(nullable = false)
     private String sender;
 
-    // null for room messages
+    
     private String recipient;
 
-    // null for DMs
+    
     private String room;
 
     @Column(nullable = false, length = 2000)
@@ -37,7 +37,7 @@ public class MessageEntity {
     @Column(nullable = false)
     private long timestamp;
 
-    // ── Helpers ──────────────────────────────────────────────────────────────
+
 
     public ChatMessage toChatMessage() {
         return ChatMessage.builder()
