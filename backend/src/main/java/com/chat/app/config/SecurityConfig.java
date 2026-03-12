@@ -14,7 +14,6 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        // Use cookie-based CSRF so the React frontend can read the token
         CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
         requestHandler.setCsrfRequestAttributeName(null);
 
@@ -22,13 +21,11 @@ public class SecurityConfig {
             .csrf(csrf -> csrf
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                 .csrfTokenRequestHandler(requestHandler)
-                // Exclude WebSocket handshake from CSRF (SockJS handles its own)
                 .ignoringRequestMatchers("/ws/**")
             )
             .authorizeHttpRequests(auth -> auth
-                // Login/logout and static assets are open
                 .requestMatchers("/api/auth/**", "/h2-console/**").permitAll()
-                // Everything else needs a valid session
+                
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
@@ -53,7 +50,7 @@ public class SecurityConfig {
                 .deleteCookies("JSESSIONID")
                 .permitAll()
             )
-            // Allow H2 console frames (dev only)
+            
             .headers(headers -> headers.frameOptions(f -> f.sameOrigin()))
             .sessionManagement(session -> session
                 .maximumSessions(1)
