@@ -35,7 +35,7 @@ public class WebSocketEventListener {
         userSessionService.connect(sessionId, username);
         log.info("Connected: {} (session {})", username, sessionId);
 
-        // Tell everyone the updated list
+        
         messagingTemplate.convertAndSend("/topic/online-users", userSessionService.getOnlineUsers());
     }
 
