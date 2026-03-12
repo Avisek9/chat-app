@@ -9,9 +9,9 @@ import lombok.*;
 public class ChatMessage {
     private MessageType type;
     private String sender;
-    private String recipient;   // For DMs
-    private String room;        // For room messages
+    private String recipient;   
+    private String room;        
     private String content;
     private long timestamp;
-    private String messageId;   // Unique ID for read receipts
+    private String messageId;   
 }
