@@ -26,7 +26,6 @@ public class MessageService {
     public ChatMessage saveMessage(ChatMessage message) {
         MessageEntity entity = MessageEntity.from(message);
         MessageEntity saved = messageRepository.save(entity);
-        // Return message with DB-generated ID
         message.setMessageId(saved.getId());
         return message;
     }
