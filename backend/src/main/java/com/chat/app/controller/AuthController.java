@@ -18,13 +18,13 @@ public class AuthController {
     private final ChatUserDetailsService userDetailsService;
     private final RoomService roomService;
 
-    // Called on page load to check if the user is already logged in
+    
     @GetMapping("/me")
     public ResponseEntity<?> me(@AuthenticationPrincipal UserDetails user) {
         if (user == null) {
             return ResponseEntity.status(401).body(Map.of("error", "Not authenticated"));
         }
-        // Restore rooms the user belongs to
+        
         var rooms = roomService.getRoomsForUser(user.getUsername())
                 .stream().map(r -> r.getName()).toList();
         return ResponseEntity.ok(Map.of("username", user.getUsername(), "rooms", rooms));
