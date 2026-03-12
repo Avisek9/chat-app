@@ -16,7 +16,7 @@ import java.util.Set;
 public class Room {
 
     @Id
-    private String name; // room name is the natural key (e.g. "general")
+    private String name; 
 
     @Column(nullable = false)
     private String createdBy;
@@ -24,7 +24,7 @@ public class Room {
     @Column(nullable = false)
     private long createdAt;
 
-    // Users explicitly invited or who have joined
+    
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "room_members", joinColumns = @JoinColumn(name = "room_name"))
     @Column(name = "username")
