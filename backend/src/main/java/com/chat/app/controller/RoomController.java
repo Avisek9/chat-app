@@ -42,7 +42,7 @@ public class RoomController {
         ));
     }
 
-    // Get members of a room
+    
     @GetMapping("/{room}/members")
     public ResponseEntity<?> getMembers(@PathVariable String room,
                                         @AuthenticationPrincipal UserDetails user) {
@@ -50,7 +50,7 @@ public class RoomController {
         return ResponseEntity.ok(Map.of("members", members));
     }
 
-    // Invite a user to a room — sends them a WebSocket notification too
+    
     @PostMapping("/{room}/invite")
     public ResponseEntity<?> inviteUser(@PathVariable String room,
                                         @RequestBody Map<String, String> body,
@@ -59,7 +59,7 @@ public class RoomController {
         if (targetUsername == null || targetUsername.isBlank())
             return ResponseEntity.badRequest().body(Map.of("error", "Target username required"));
 
-        // Check invitee is actually online
+        
         if (!userSessionService.getOnlineUsers().contains(targetUsername)) {
             return ResponseEntity.badRequest().body(Map.of("error", targetUsername + " is not online"));
         }
@@ -70,7 +70,7 @@ public class RoomController {
             return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
         }
 
-        // Push a real-time invite notification to the target user
+        
         ChatMessage invite = ChatMessage.builder()
                 .type(MessageType.INVITE)
                 .sender(inviter.getUsername())
@@ -85,7 +85,7 @@ public class RoomController {
         return ResponseEntity.ok(Map.of("message", targetUsername + " invited to #" + room));
     }
 
-    // Get all rooms the current user is a member of
+    
     @GetMapping("/mine")
     public ResponseEntity<?> myRooms(@AuthenticationPrincipal UserDetails user) {
         List<String> rooms = roomService.getRoomsForUser(user.getUsername())
