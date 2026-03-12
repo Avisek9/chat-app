@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface MessageRepository extends JpaRepository<MessageEntity, String> {
 
-    // Fetch recent room messages ordered oldest-first for display
+
     @Query("""
         SELECT m FROM MessageEntity m
         WHERE m.room = :room
@@ -20,7 +20,7 @@ public interface MessageRepository extends JpaRepository<MessageEntity, String> 
         """)
     List<MessageEntity> findRecentByRoom(@Param("room") String room, Pageable pageable);
 
-    // Fetch DM history between two users (order doesn't matter for the query — we sort after)
+    
     @Query("""
         SELECT m FROM MessageEntity m
         WHERE m.type = 'PRIVATE'
