@@ -65,7 +65,7 @@ export default function App() {
       onInvite: setPendingInvite,
     })
 
-  // On mount, check if already logged in (session cookie still valid)
+  
   useEffect(() => {
     fetch('/api/auth/me', { credentials: 'include' })
       .then(r => r.ok ? r.json() : null)
