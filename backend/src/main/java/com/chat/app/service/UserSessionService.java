@@ -8,16 +8,11 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-/**
- * Tracks who is currently connected via WebSocket.
- * A user is "online" if and only if they have an active STOMP session.
- * Registration/login is handled by Spring Security — this service only
- * cares about live connections.
- */
+
 @Service
 public class UserSessionService {
 
-    // stompSessionId -> UserSession
+
     private final Map<String, UserSession> sessions = new ConcurrentHashMap<>();
 
     public void connect(String stompSessionId, String username) {
